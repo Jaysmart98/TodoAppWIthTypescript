@@ -6,7 +6,7 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
 
 interface User {
     firstName:string,
-    lastName: string,
+    userName: string,
     email: string,
     password: string
 }
@@ -26,60 +26,57 @@ if (localStorage.users) {
 }
 
 const signUp = () => {
-    let firstName = (document.getElementById('firstName') as HTMLInputElement)?.value;
-    let lastName = (document.getElementById('userName') as HTMLInputElement)?.value;
-    let email = (document.getElementById('email') as HTMLInputElement)?.value;
-    let password = (document.getElementById('password') as HTMLInputElement)?.value
+    let firstName = (document.getElementById('firstNAME') as HTMLInputElement)?.value.trim();
+    let userName = (document.getElementById('userNAME') as HTMLInputElement)?.value.trim(); // Assuming 'userNAME' is intended for lastName
+    let email = (document.getElementById('mAIL') as HTMLInputElement)?.value.trim();
+    let password = (document.getElementById('passWORD') as HTMLInputElement)?.value.trim();
 
-    let user:User = { firstName, lastName, email, password};
+    let user:User = { firstName, userName, email, password};
     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const errorText = document.getElementById('alatMsg');
 
-    if (firstName && lastName && email && password) {
-        if ( firstName !== " " || lastName !== " " || email !== " " || password !== " ") {
-            let pTest = passwordRegex.test(password);
-            const found = allUsers.find(person => person.email === email);
-            if(found) {
-                alert("Email already exists, proceed to sign in page");
-            } else {
-                if (pTest) {
-                    allUsers.push(user);
-                    console.log(allUsers);
-                    let localStore = (localStorage.users = JSON.stringify(allUsers));
-                    if (localStore) {
-                        setTimeout(() => {
-                            window.location.href = "../signup.html";
-                        }, 1000);
-                    }
-                } else {
-                    const errorText = document.getElementById('includes');
-                    if (errorText) {
-                        errorText.style.cssText = 'color: #ff0000; font-size: 14px; margin-top: 10px; text-align: center; font-weight: bold; padding: 10px;';
-                        // errorText.innerHTML = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.";
-                    }
-                }
+    if (!firstName || !userName || !email || !password) {
+        if (errorText) {
+            errorText.style.cssText = 'color: #ff0000 !important; font-size: 14px !important; text-align: center !important; font-weight: bold !important; padding: 10px !important;';
+            errorText.innerHTML = "All fields are required.";
+        }
+        return; // Stop the signup process if fields are missing
+    }
+
+    let pTest = passwordRegex.test(password);
+    const found = allUsers.find(person => person.email === email);
+
+    if (found) {
+        alert("Email already exists, proceed to sign in page");
+    } else {
+        if (pTest) {
+            allUsers.push(user);
+            console.log(allUsers);
+            localStorage.users = JSON.stringify(allUsers);
+            setTimeout(() => {
+                window.location.href = "../login.html";
+            }, 1000);
+        } else {
+            if (errorText) {
+                errorText.style.cssText = 'color: #ff0000 !important; font-size: 14px !important; text-align: center !important; font-weight: bold !important; padding: 10px !important;';
+                errorText.innerHTML = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.";
             }
         }
-        
-    } else{
-
     }
-}
+};
 
 const clearUsers = () => {
     if (localStorage.users) {
         const usersString = localStorage.getItem('users');
         if (usersString) {
-            let confirmation = prompt('Enter password to clear users')
+            let confirmation = prompt('Enter password to clear users');
             if (confirmation === 'admin123') {
                 localStorage.removeItem('users');
                 allUsers = [];
                 alert('Users cleared successfully');
             } else {
                 alert('Incorrect password');
-                alert('Users not cleared');
             }
+        }
     }
-} else {
-    allUsers = []
-}
-}
+};

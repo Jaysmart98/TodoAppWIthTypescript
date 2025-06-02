@@ -14,14 +14,14 @@ const signIn = () => {
     if (storedUsersString) {
         try {
             const storedUsers = JSON.parse(storedUsersString);
-            const foundUser = storedUsers.find(user => user.email === email && user.password === password); // In a real app, you'd compare hashed passwords
+            const foundUser = storedUsers.find(user => user.email === email && user.password === password);
             if (foundUser) {
-                alert(`Sign in successful! Welcome, ${foundUser.firstName} (${foundUser.userName})`);
+                alert(`Sign in successful! Welcome, ${foundUser.firstName} ${foundUser.lastName}`);
                 window.location.href = "../dashboard/dashboard.html";
             }
             else {
                 if (errorMsgElement) {
-                    errorMsgElement.classList.remove('d-none');
+                    errorMsgElement.classList.remove('d-none'); // Show the error message
                 }
             }
         }

@@ -3,41 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign In</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-</head>
+    <!-- <link rel="stylesheet" href="style.css"> </head> -->
 <body>
-    
     <div class="container-fluid shadow p-2 bg-secondary text-light">
-
         <div class="d-flex align-items-center justify-content-center p-2 m-2">
-          <h3 class="text-center">EISENHOWER</h3>
-          <p class="text-center mx-3">MATRIX</p>
+            <h3 class="text-center">EISENHOWER</h3>
+            <p class="text-center mx-3">MATRIX</p>
         </div>
-
-        <div id="showTaskCompleted"> </div>
-        <div id="showName"> </div>
     </div>
-
 
     <div class="justify-content-center row dm-d-flex">
-        <div class="card m-2 col-6 container-fluid shadow p-5 bg-dark">
-            <h3 class="text-center text-light">LOGIN</h3>
+        <div class="card m-2 col-md-6 container-fluid shadow p-5 bg-dark">
+            <h3 class="text-center text-light">SIGN IN</h3>
 
-        <div class="card-body">
-            <input type="text" name="" id="" placeholder="Username or email" class="my-2 form-control shadow-none">
-        </div>
+            <div class="card-body">
+                <input type="text" id="signInEmail" placeholder="Email" class="my-2 form-control shadow-none">
+            </div>
 
-        <div class="card-body">
-            <input type="text" name="" id="" placeholder="Password" class="my-2 form-control shadow-none">
-        </div>
+            <div class="card-body">
+                <input type="password" id="signInPassword" placeholder="Password" class="my-2 form-control shadow-none">
+            </div>
 
-        <div class="card-body text-center m-2 p-2">
-            <button class="btn btn-secondary p-2 w-50 my-3">SIGN IN</button>
+            <small id="signInErrorMsg" class="mt-0 text-danger text-center fw-bold d-none">Invalid email or password.</small>
+
+            <div class="card-body text-center m-2 p-2">
+                <button onclick="signIn()" class="btn btn-secondary p-2 w-50 my-3">SIGN IN</button>
+            </div>
+
+            <div class="card-body text-center m-2 p-2">
+                <p class="text-secondary">Don't have an account? <a href="../signup/signup.html" class="text-light">Sign Up</a></p>
+            </div>
         </div>
     </div>
 
-    <script src="index.js"></script>
+    <script src="signin.js"></script>
 </body>
 </html>
