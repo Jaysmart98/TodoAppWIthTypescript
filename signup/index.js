@@ -44,7 +44,8 @@ const signUp = () => {
             console.log(allUsers);
             localStorage.users = JSON.stringify(allUsers);
             setTimeout(() => {
-                window.location.href = "../login.html";
+                window.location.href = "../signin/login.html";
+                ;
             }, 1000);
         }
         else {
