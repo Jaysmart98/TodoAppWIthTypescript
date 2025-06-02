@@ -16,7 +16,7 @@ const signIn = () => {
             const storedUsers = JSON.parse(storedUsersString);
             const foundUser = storedUsers.find(user => user.email === email && user.password === password); // In a real app, you'd compare hashed passwords
             if (foundUser) {
-                alert(`Sign in successful! Welcome, ${foundUser.firstName} (${foundUser.userName})`);
+                alert(`Sign in successful! Welcome, ${foundUser.userName}`);
                 window.location.href = "../dashboard/dashboard.html";
             }
             else {
